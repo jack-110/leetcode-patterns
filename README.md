@@ -2,7 +2,7 @@
 
 ## Sliding Window
 
-### Window Size
+### Expected Window Size and Actually Window Size
 
 ### Window Start and Window End
 
