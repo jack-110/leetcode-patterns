@@ -1,12 +1,10 @@
 package org.leetcode.SlidingWindow.FruitsintoBaskets;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class Solution {
 
-    public static int findLength(char[] arr) {
+    public static int findLengthRename(char[] arr) {
         int maxLength = 0;
         HashMap<Character, Integer> charMap = new HashMap<>();
         int windowStart = 0;
@@ -27,9 +25,9 @@ public class Solution {
 
     public static void main(String[] args) {
         char[] arr = new char[]{'A', 'B', 'C', 'A', 'C'};
-        System.out.println(findLength(arr) == 3);
+        System.out.println(findLengthRename(arr) == 3);
 
         arr = new char[]{'A', 'B', 'C', 'B', 'B', 'C'};
-        System.out.println(findLength(arr) == 5);
+        System.out.println(findLengthRename(arr) == 5);
     }
 }
