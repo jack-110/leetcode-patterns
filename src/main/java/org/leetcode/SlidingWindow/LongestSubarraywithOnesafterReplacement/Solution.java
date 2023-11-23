@@ -2,6 +2,7 @@ package org.leetcode.SlidingWindow.LongestSubarraywithOnesafterReplacement;
 
 public class Solution {
 
+    //add some commits
     public static int findLength(int[] arr, int k) {
         int maxLength = 0;
         int windowStart = 0, maxZeroCount = 0;
