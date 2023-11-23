@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class Solution {
 
-    public static int findLength(char[] arr) {
+    public static int findLengthRebase(char[] arr) {
         int maxLength = 0;
         HashMap<Character, Integer> charMap = new HashMap<>();
         int windowStart = 0;
@@ -25,9 +25,9 @@ public class Solution {
 
     public static void main(String[] args) {
         char[] arr = new char[]{'A', 'B', 'C', 'A', 'C'};
-        System.out.println(findLength(arr) == 3);
+        System.out.println(findLengthRebase(arr) == 3);
 
         arr = new char[]{'A', 'B', 'C', 'B', 'B', 'C'};
-        System.out.println(findLength(arr) == 5);
+        System.out.println(findLengthRebase(arr) == 5);
     }
 }
