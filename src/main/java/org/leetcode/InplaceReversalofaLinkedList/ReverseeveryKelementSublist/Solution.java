@@ -2,7 +2,7 @@ package org.leetcode.InplaceReversalofaLinkedList.ReverseeveryKelementSublist;
 
 class Solution {
     public static ListNode reverse(ListNode head, int k) {
-        if (head == null || head.next == null || head.next.next == null) {
+        if (head == null || k <= 1) {
             return head;
         }
 
