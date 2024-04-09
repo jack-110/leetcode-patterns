@@ -101,4 +101,27 @@ class Graph {
         }
         return neighborList;
     }
+
+    public void DFS(int start) {
+        boolean[] visited = new boolean[getVertexCount()];
+        Stack<Integer> stack = new Stack<>();
+        stack.push(start);
+        visited[start] = true;
+
+        while (!stack.isEmpty()) {
+            int vertex = stack.pop();
+            for (int neighbor : adjacencyList.get(vertex)) {
+                if (!visited[neighbor]) {
+                    stack.push(neighbor);
+                    visited[neighbor] = true;
+                }
+            }
+        }
+    }
+
+    public void DFSRecursion(int start) {
+        for (int neighbor : adjacencyList.get(start)) {
+            DFSRecursion(neighbor);
+        }
+    }
 }
