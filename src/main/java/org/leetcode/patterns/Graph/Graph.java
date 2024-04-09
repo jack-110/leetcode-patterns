@@ -1,8 +1,6 @@
 package org.leetcode.patterns.Graph;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 class Graph {
     private final HashMap<Integer, ArrayList<Integer>> adjacencyList;
@@ -47,38 +45,60 @@ class Graph {
         vertex2Edges.add(vertex1);
     }
 
-    public void removeEdge(int vertex1, int vertex2) {
-
-    }
     // Remove an edge between two vertices.
+    public void removeEdge(int vertex1, int vertex2) {
+        if (adjacencyList.get(vertex1) == null || adjacencyList.get(vertex2) == null) {
+            return;
+        }
+        adjacencyList.get(vertex1).remove(vertex2);
+        adjacencyList.get(vertex2).remove(vertex1);
 
-    public ArrayList<Integer> getVertices() {
-        return null;
     }
+
     // Get a list of all vertices.
-
-    public boolean isAdjacent(int vertex1, int vertex2) {
-        return false;
+    public ArrayList<Integer> getVertices() {
+        return new ArrayList<>(adjacencyList.keySet());
     }
+
     // Check if two vertices are adjacent.
-
-    public int getVertexCount() {
-        return 0;
+    public boolean isAdjacent(int vertex1, int vertex2) {
+        if (adjacencyList.get(vertex1) == null || adjacencyList.get(vertex2) == null) {
+            return false;
+        }
+        return adjacencyList.get(vertex1).contains(vertex2) && adjacencyList.get(vertex2).contains(vertex1);
     }
+
     // Get the total number of vertices.
-
-    public int getEdgeCount() {
-        return 0;
+    public int getVertexCount() {
+        return adjacencyList.size();
     }
+
     // Get the total number of edges.
-
-    public ArrayList<Pair<Integer, Integer>> getEdges() {
-        return null;
+    public int getEdgeCount() {
+        int count = 0;
+        for (List<Integer> neighbors : adjacencyList.values()) {
+            count += neighbors.size();
+        }
+        return count / 2;
     }
+
     // Get a list of all edges.
-
-    public ArrayList<Integer> getNeighbors(int vertex) {
-        return null;
+    public ArrayList<Pair<Integer, Integer>> getEdges() {
+        ArrayList<Pair<Integer, Integer>> edges = new ArrayList<>();
+        for (Integer vertexLeft : adjacencyList.keySet()) {
+            for (Integer vertexRight : adjacencyList.get(vertexLeft)) {
+                edges.add(new Pair<>(vertexLeft, vertexRight));
+            }
+        }
+        return edges;
     }
+
     // Get a list of neighbors of a given vertex.
+    public ArrayList<Integer> getNeighbors(int vertex) {
+        ArrayList<Integer> neighborList = new ArrayList<>();
+        for (List<Integer> neighbors : adjacencyList.values()) {
+            neighborList.addAll(neighbors);
+        }
+        return neighborList;
+    }
 }
