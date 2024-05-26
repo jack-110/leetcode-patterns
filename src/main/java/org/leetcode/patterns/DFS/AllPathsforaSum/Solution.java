@@ -1,31 +1,33 @@
 package org.leetcode.patterns.DFS.AllPathsforaSum;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Solution {
 
+    static List<List<Integer>> result = new ArrayList<>();
+
     public static List<List<Integer>> findPaths(TreeNode root, int sum) {
-        List<List<Integer>> allPaths = new ArrayList<>();
-        List<Integer> path = new ArrayList<Integer>();
-        findPaths(allPaths, path, root, sum);
-        return allPaths;
+
+        return result;
     }
 
-    public static void findPaths(List<List<Integer>> allPaths, List<Integer> path, TreeNode root, int sum) {
+    private static void findPaths(TreeNode root, int sum, List<Integer> path) {
         if (root == null) {
             return;
         }
 
         path.add(root.val);
-        if (root.left == null && root.right == null && root.val == sum) {
-            allPaths.add(new ArrayList<>(path));
+        if (root.val == sum && root.left == null && root.right == null) {
+            result.add(path);
         } else {
-            findPaths(allPaths, path, root.left, sum - root.val);
-            findPaths(allPaths, path, root.right, sum - root.val);
+            sum = sum - root.val;
+            findPaths(root.left, sum, path);
+            findPaths(root.right, sum, path);
         }
-
-        path.remove(path.size() - 1);
+        path.remove(root.val);
     }
 
     public static class TreeNode {
