@@ -6,27 +6,32 @@ public class Solution {
 
 
     private List<List<Integer>> traverse(TreeNode root) {
-        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        List<List<Integer>> result = new ArrayList<>();
         if (root == null) {
-            return result;
+            return Collections.emptyList();
         }
+
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
+
         while (!queue.isEmpty()) {
             int levelSize = queue.size();
-            List<Integer> currentLevel = new ArrayList<>(levelSize);
-            for (int i = 0; i < queue.size(); i++) {
-                TreeNode currentTreeNode = queue.poll();
-                currentLevel.add(currentTreeNode.val);
-                if (currentTreeNode.left != null) {
-                    queue.offer(currentTreeNode.left);
+            List<Integer> currentLevel = new ArrayList<>();
+            for (int i = 0; i < levelSize; i++) {
+                TreeNode currentNode = queue.poll();
+                assert currentNode != null;
+                currentLevel.add(currentNode.val);
+                if (currentNode.left != null) {
+                    queue.offer(currentNode.left);
                 }
-                if (currentTreeNode.right != null) {
-                    queue.offer(currentTreeNode.right);
+
+                if (currentNode.right != null) {
+                    queue.offer(currentNode.right);
                 }
             }
             result.add(currentLevel);
         }
+
         return result;
     }
 
