@@ -31,6 +31,7 @@ public class Solution {
                 if (matrix == null || node[0] < 0 || node[0] >= matrix.length || node[1] < 0 || node[1] >= matrix[0].length) {
                     continue;
                 }
+                //it will run forever without checking this.
                 if (matrix[node[0]][node[1]] == 0) {
                     continue;
                 }
