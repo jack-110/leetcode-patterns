@@ -28,8 +28,11 @@ public class Solution {
             for (int i = 0; i < levelSize; i++) {
                 int[] node = queue.poll();
                 assert node != null;
-                if (matrix == null || row < 0 || row >= matrix.length || col < 0 || col >= matrix[0].length) {
-                    return;
+                if (matrix == null || node[0] < 0 || node[0] >= matrix.length || node[1] < 0 || node[1] >= matrix[0].length) {
+                    continue;
+                }
+                if (matrix[node[0]][node[1]] == 0) {
+                    continue;
                 }
                 matrix[node[0]][node[1]] = 0;
                 queue.offer(new int[]{node[0], node[1] + 1});
